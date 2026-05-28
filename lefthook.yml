@@ -1,0 +1,22 @@
+# Lefthook configuration
+# Refer to https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md
+
+pre-commit:
+  commands:
+    frontend-format:
+      root: "frontend/"
+      glob: "*.{js,jsx,ts,tsx}"
+      run: pnpm format {staged_files}
+      stage_fixed: true
+
+    backend-format:
+      root: "backend/"
+      glob: "*.go"
+      run: gofmt -w {staged_files}
+      stage_fixed: true
+
+    ai-service-format:
+      root: "ai-service/"
+      glob: "*.py"
+      run: uv run ruff format {staged_files}
+      stage_fixed: true
